@@ -1,0 +1,97 @@
+@model IEnumerable<StudentManagement.Models.User>
+@{
+    ViewData["Title"] = "List Users";
+}
+<div class="container-fluid">
+    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+        <h1 class="page-title fw-semibold fs-18 mb-0"><i class="fa-solid fa-users"></i> Users</h1>
+    </div>
+    <div class="col-xl-12">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">
+                    List Users
+                </div>
+                <div class="d-flex">
+                    <button data-bs-toggle="modal" data-bs-target="#add_user"
+                        class="btn btn-outline-primary shadow-primary btn-wave btn-sm"><i
+                            class="ri-add-line fw-semibold align-middle"></i> Add Users</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive table-wrapper mb-3">
+                    <table class="table text-nowrap table-striped table-hover table-bordered" style="width:100%"
+                        id="datatable-basic">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a class="text-primary">@user.Id</a>
+                                    </td>
+                                    <td>
+                                        @user.Username
+                                    </td>
+                                    <td>
+                                        @user.Role
+                                    </td>
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="add_user" tabindex="-1" aria-labelledby="add_user" data-bs-keyboard="false"
+    aria-hidden="true">
+    <!-- Scrollable modal -->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="staticBackdropLabel2">Add Users</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-action="Create" method="post">
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <label class="col-sm-4 col-form-label" for="example-hf-email">Username</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="username"
+                                placeholder="Please enter your username" required>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <label class="col-sm-4 col-form-label" for="example-hf-email">Password</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="password"
+                                placeholder="Please enter your password" required>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <label class="col-sm-4 col-form-label" for="example-hf-email">Role</label>
+                        <div class="col-sm-8">
+                            <input type="role" class="form-control" name="role" placeholder="Please enter your role"
+                                required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-fw fa-plus me-1"></i>
+                        Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
